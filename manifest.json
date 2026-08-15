@@ -1,0 +1,36 @@
+{
+ "manifest_version": 3,
+ "name": "BRAIN CHAT",
+ "version": "1.0.0",
+ "description": "Reads your AI chat history and divides it into topics using local TF-IDF. Helps user identify and analyze topicwise history",
+  "permissions": ["storage", "activeTab", "scripting", "tabs"],
+  "host_permissions": [
+    "https://claude.ai/*",
+    "https://chatgpt.com/*",
+    "https://gemini.google.com/*",
+    "https://www.perplexity.ai/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+        "matches": [
+            "https://claude.ai/*",
+        "https://chatgpt.com/*",
+        "https://gemini.google.com/*",
+        "https://www.perplexity.ai/*"
+        ],
+        "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  }
+    }
+  
