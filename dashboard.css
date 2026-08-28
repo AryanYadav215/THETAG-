@@ -1,0 +1,325 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0f0f1a;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.5;
+}
+
+/* Header & Status Bar */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: #0f0f1a;
+  border-bottom: 1px solid #2d2d5e;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+}
+
+.header-inner h1 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+#analyze-btn {
+  background-color: #a0a0ff;
+  color: #0f0f1a;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#analyze-btn:hover {
+  background-color: #8b8bff;
+}
+
+.status-bar {
+  background-color: #12122a;
+  padding: 6px 24px;
+  font-size: 12px;
+  color: #8888aa;
+  border-top: 1px solid #2d2d5e;
+}
+
+/* Main Content */
+main {
+  margin-top: 100px;
+  padding: 24px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.state-view {
+  display: flex;
+  flex-direction: column;
+}
+
+.state-view.hidden {
+  display: none !important;
+}
+
+/* Empty State */
+#state-empty {
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+#state-empty h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+#state-empty p {
+  color: #8888aa;
+}
+
+/* Loading State */
+#state-loading {
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #2d2d5e;
+  border-top-color: #a0a0ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 24px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+#loading-text {
+  font-size: 18px;
+  color: #a0a0ff;
+}
+
+/* Results State */
+.topics-summary {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #a0a0ff;
+  border-bottom: 1px solid #2d2d5e;
+  padding-bottom: 12px;
+}
+
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+/* Topic Card */
+.topic-card {
+  background-color: #1a1a2e;
+  border: 1px solid #2d2d5e;
+  border-radius: 12px;
+  padding: 20px;
+  transition: transform 0.2s, border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.topic-card:hover {
+  border-color: #a0a0ff;
+  transform: translateY(-2px);
+}
+
+.topic-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.topic-icon {
+  font-size: 16px;
+  margin-top: 2px;
+}
+
+.topic-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.topic-message-count {
+  font-size: 13px;
+  color: #8888aa;
+  margin-bottom: 16px;
+}
+
+.topic-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.keyword-tag {
+  background-color: #252545;
+  color: #a0a0ff;
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 12px;
+}
+
+.view-messages-btn {
+  width: 100%;
+  background-color: transparent;
+  color: #a0a0ff;
+  border: 1px solid #a0a0ff;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.view-messages-btn:hover {
+  background-color: #a0a0ff;
+  color: #0f0f1a;
+}
+
+/* Viewer State */
+.back-btn {
+  background: none;
+  border: none;
+  color: #a0a0ff;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  margin-bottom: 16px;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+}
+
+#viewer-heading {
+  font-size: 28px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid #2d2d5e;
+  padding-bottom: 16px;
+}
+
+.message-item {
+  margin-bottom: 24px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.message-item--user {
+  background-color: rgba(78, 205, 196, 0.05);
+  border-left: 3px solid #4ecdc4;
+}
+
+.message-item--assistant {
+  background-color: rgba(160, 160, 255, 0.05);
+  border-left: 3px solid #a0a0ff;
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.role-badge--user {
+  background-color: rgba(78, 205, 196, 0.2);
+  color: #4ecdc4;
+}
+
+.role-badge--assistant {
+  background-color: rgba(160, 160, 255, 0.2);
+  color: #a0a0ff;
+}
+
+.message-text {
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+/* Error State */
+#state-error {
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+}
+
+.error-card {
+  background-color: rgba(255, 100, 100, 0.1);
+  border: 1px solid #ff6464;
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  max-width: 400px;
+}
+
+.error-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+#error-message {
+  color: #ffb4b4;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.try-again-btn {
+  background-color: transparent;
+  color: #ff6464;
+  border: 1px solid #ff6464;
+  border-radius: 6px;
+  padding: 8px 24px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.try-again-btn:hover {
+  background-color: #ff6464;
+  color: #1a0f0f;
+}

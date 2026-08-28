@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat Topic Divider</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <h1>Chat Topic Divider</h1>
+      <button id="analyze-btn">Analyze Chat</button>
+    </div>
+    <div class="status-bar" id="status-bar">
+      Waiting for chat connection...
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- STATE: EMPTY -->
+    <div id="state-empty" class="state-view">
+      <div class="empty-icon">📊</div>
+      <h2>No analysis yet</h2>
+      <p>Open an AI chat, then click Analyze Chat</p>
+    </div>
+
+    <!-- STATE: LOADING -->
+    <div id="state-loading" class="state-view hidden">
+      <div class="spinner"></div>
+      <h2 id="loading-text">Reading chat history...</h2>
+    </div>
+
+    <!-- STATE: RESULTS -->
+    <div id="state-results" class="state-view hidden">
+      <div class="topics-summary" id="topics-summary"></div>
+      <div class="topics-grid" id="topics-grid"></div>
+    </div>
+
+    <!-- STATE: VIEWER -->
+    <div id="state-viewer" class="state-view hidden">
+      <button id="back-btn" class="back-btn">← Back to Topics</button>
+      <h2 id="viewer-heading"></h2>
+      <div id="message-list"></div>
+    </div>
+
+    <!-- STATE: ERROR -->
+    <div id="state-error" class="state-view hidden">
+      <div class="error-card">
+        <div class="error-icon">⚠️</div>
+        <p id="error-message"></p>
+        <button id="try-again-btn" class="try-again-btn">Try Again</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Load pipeline sequentially as plain JS -->
+  <script src="pipeline/tokenizer.js"></script>
+  <script src="pipeline/tfidf.js"></script>
+  <script src="pipeline/similarity.js"></script>
+  <script src="pipeline/chunker.js"></script>
+  
+  <!-- Load dashboard orchestrator last -->
+  <script src="dashboard.js"></script>
+</body>
+</html>
