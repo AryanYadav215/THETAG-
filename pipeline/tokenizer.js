@@ -84,6 +84,18 @@ function tokenize(text) {
   // Remove all remaining punctuation — keep only letters, numbers, spaces
   processedText = processedText.replace(/[^a-z0-9\s]/g, ' ');
 
+  // NEW: Remove Hexadecimal/Hash strings (e.g., 0x1a4, a1b2c3d4) that are 6+ chars long
+  processedText = processedText.replace(/\b(?:0x)?[a-f0-9]{6,}\b/g, ' ');
+
+  // NEW: Remove Email Addresses
+  processedText = processedText.replace(/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g, ' ');
+
+  // NEW: Remove standalone numbers (keeps numbers attached to words like "h2o" or "fleet1")
+  processedText = processedText.replace(/\b\d+\b/g, ' ');
+
+  // Remove all remaining punctuation — keep only letters, numbers, spaces
+  processedText = processedText.replace(/[^a-z0-9\s]/g, ' ');
+
   // Split on whitespace into raw tokens
   let tokens = processedText.split(/\s+/).filter(Boolean);
 
